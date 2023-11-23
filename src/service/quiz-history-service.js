@@ -59,6 +59,17 @@ const createOrUpdate = async (req) => {
     })
 
     if (totalQuizHistory === 0) {
+        await prismaClient.user.update({
+            where: {
+                username: req.user.username
+            },
+            data: {
+                total_score: {
+                    increment: score
+                }
+            }
+        })
+
         return prismaClient.quizHistory.create({
             data: {
                 username: req.user.username,
@@ -70,6 +81,29 @@ const createOrUpdate = async (req) => {
         })
         
     }
+
+    const lastQuizHistory = await prismaClient.quizHistory.findFirst({
+        where: {
+            username: req.user.username,
+            id_quiz: req.params.idQuiz
+        },
+        select: {
+            score: true
+        }
+    })
+
+    let addScoreToTotalScore = score - lastQuizHistory.score
+
+    await prismaClient.user.update({
+        where: {
+            username: req.user.username
+        },
+        data: {
+            total_score: {
+                increment: addScoreToTotalScore
+            }
+        }
+    })
 
     return prismaClient.quizHistory.update({
         where: {

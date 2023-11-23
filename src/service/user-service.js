@@ -83,7 +83,9 @@ const get = async (username) => {
         select: {
             username: true,
             name: true,
-            is_admin: true
+            is_admin: true,
+            total_score: true,
+            token: true,
         }
     })
 
