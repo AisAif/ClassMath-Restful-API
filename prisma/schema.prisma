@@ -1,0 +1,83 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  // id        String @id @default(auto()) @map("_id") @db.ObjectId
+  username        String @id @map("_id")
+  name            String
+  password        String
+  total_score     Int @default(0)
+  is_admin         Boolean @default(false)
+  token           String?
+  quiz_histories  QuizHistory[]
+
+  @@map("users")
+}
+
+model Grade {
+  id              String @id @default(auto()) @map("_id") @db.ObjectId
+  name            String
+  grade_image     String
+  tutorials       Tutorial[]
+  
+  @@map("grades")
+}
+
+model Tutorial {
+  id              String @id @default(auto()) @map("_id") @db.ObjectId
+  chapter         Int
+  title           String
+  tutorial_file   String
+  tutorial_image  String
+  id_grade        String @db.ObjectId
+  grade           Grade @relation(fields: [id_grade], references: [id])
+  quizzes         Quiz[]
+
+  @@map("tutorials")
+}
+
+model Quiz {
+  id            String @id @default(auto()) @map("_id") @db.ObjectId
+  title         String
+  created_at    DateTime
+  id_tutorial   String @db.ObjectId
+  tutorial      Tutorial @relation(fields: [id_tutorial], references: [id])
+  questions     Question[]
+  quiz_history  QuizHistory?
+
+  @@map("quizzes")
+}
+
+model Question {
+  id              String @id @default(auto()) @map("_id") @db.ObjectId
+  content         String
+  choices         Json
+  answer          String
+  question_file   String
+  id_quiz         String @db.ObjectId
+  quiz            Quiz @relation(fields: [id_quiz], references: [id])
+
+  @@map("questions")
+}
+
+model QuizHistory {
+  id          String @id @default(auto()) @map("_id") @db.ObjectId
+  score       Int
+  created_at  DateTime
+  updated_at  DateTime
+  id_quiz     String @db.ObjectId @unique
+  quiz        Quiz @relation(fields: [id_quiz], references: [id])
+  username    String
+  user        User @relation(fields: [username], references: [username])
+
+  @@map("quiz_histories")
+}
