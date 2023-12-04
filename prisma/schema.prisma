@@ -62,7 +62,7 @@ model Question {
   content         String
   choices         Json
   answer          String
-  question_file   String
+  question_file   String?
   id_quiz         String @db.ObjectId
   quiz            Quiz @relation(fields: [id_quiz], references: [id])
 
