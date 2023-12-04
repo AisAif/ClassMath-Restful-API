@@ -16,7 +16,7 @@ model User {
   name            String
   password        String
   total_score     Int @default(0)
-  is_admin         Boolean @default(false)
+  is_admin        Boolean @default(false)
   token           String?
   quiz_histories  QuizHistory[]
 

@@ -210,8 +210,11 @@ const remove = async (idGrade, idTutorial) => {
     return
 }
 
-const getAll = async () => {
+const getAllByIdGrade = async (req) => {
     return await prismaClient.tutorial.findMany({
+        where: {
+            id_grade: req.params.idGrade
+        },
         select: {
             id: true,
             title: true,
@@ -228,5 +231,5 @@ export default {
     get,
     update,
     remove,
-    getAll
+    getAllByIdGrade
 }

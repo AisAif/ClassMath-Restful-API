@@ -163,8 +163,11 @@ const remove = async (idGrade, idTutorial, idQuiz) => {
     return 
 }
 
-const getAll = async () => {
+const getAllByIdTutorial = async (req) => {
     return await prismaClient.quiz.findMany({
+        where: {
+            id_tutorial: req.params.idTutorial  
+        },
         select: {
             id: true,
             title: true,
@@ -186,5 +189,5 @@ export default {
     get,
     update,
     remove,
-    getAll
+    getAllByIdTutorial
 }

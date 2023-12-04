@@ -44,9 +44,9 @@ const remove = async (req, res, next) => {
     }
 }
 
-const getAll = async (req, res, next) => {
+const getAllByIdTutorial = async (req, res, next) => {
     try {
-        const result = await quizService.getAll()
+        const result = await quizService.getAllByIdTutorial(req)
         res.status(200).json({
             data: result
         })
@@ -60,5 +60,5 @@ export default {
     get,
     update,
     remove,
-    getAll
+    getAllByIdTutorial
 }

@@ -21,11 +21,11 @@ userRouter.get("/api/grades/:idGrade", gradeController.get)
 
 // Tutorial API
 userRouter.get("/api/grades/:idGrade/tutorials/:idTutorial", tutorialController.get)
-userRouter.get("/api/grades/:idGrade/tutorials/", tutorialController.getAll)
+userRouter.get("/api/grades/:idGrade/tutorials/", tutorialController.getAllByIdGrade)
 
 // Quiz API
 userRouter.get("/api/grades/:idGrade/tutorials/:idTutorial/quizzes/:idQuiz", quizController.get)
-userRouter.get("/api/grades/:idGrade/tutorials/:idTutorial/quizzes/", quizController.getAll)
+userRouter.get("/api/grades/:idGrade/tutorials/:idTutorial/quizzes/", quizController.getAllByIdTutorial)
 
 // Quiz History API
 userRouter.post("/api/username/:username/quizzes/:idQuiz/quiz-histories", quizHistoryController.createOrUpdate)
