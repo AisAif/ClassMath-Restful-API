@@ -155,10 +155,40 @@ const logout = async (username) => {
     })
 }
 
+const getUsersScore = async (username) => {
+    const user = await prismaClient.user.findUnique({
+        where: {
+            username: username
+        },
+        select: {
+            username: true,
+            name: true,
+            total_score: true
+        }
+    })
+
+    let users = await prismaClient.user.findMany({
+        orderBy: {
+            total_score: "desc"
+        },
+        select: {
+            username: true,
+            name: true,
+            total_score: true
+        },
+        take: 11,
+    })
+
+    users = users.filter(user => user.username !== username)
+    users = [user, ...users].sort((a, b) => b.total_score - a.total_score)
+    return users
+}
+
 export default {
     register,
     login,
     get,
     update,
-    logout
+    logout,
+    getUsersScore
 }

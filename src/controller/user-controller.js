@@ -58,10 +58,22 @@ const logout = async (req, res, next) => {
     }
 }
 
+const getUsersScore = async (req, res, next) => {
+    try {
+        const result = await userService.getUsersScore(req.user.username)
+        res.status(200).json({
+            data: result
+        })
+    } catch (error) {
+        next(error)
+    }
+}
+
 export default {
     register,
     login,
     get,
     update,
-    logout
+    logout,
+    getUsersScore
 }

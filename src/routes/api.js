@@ -14,6 +14,7 @@ userRouter.use(authMiddleware)
 userRouter.get("/api/users/current", userController.get)
 userRouter.patch("/api/users/current", userController.update)
 userRouter.delete("/api/users/logout", userController.logout)
+userRouter.delete("/api/users/leaderboard", userController.getUsersScore)
 
 // Grade API
 userRouter.get("/api/grades/", gradeController.getAll)
