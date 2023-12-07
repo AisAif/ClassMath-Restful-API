@@ -55,10 +55,22 @@ const getAllByIdGrade = async (req, res, next) => {
     }
 }
 
+const search = async (req, res, next) => {
+    try {
+        const result = await tutorialService.search(req.query.search)
+        res.status(200).json({
+            data: result
+        })
+    } catch (error) {
+        next(error)
+    }
+}
+
 export default {
     create,
     get,
     update,
     remove,
-    getAllByIdGrade
+    getAllByIdGrade,
+    search
 }

@@ -7,6 +7,7 @@ import { validate } from "../validation/validation.js"
 const createOrUpdate = async (req) => {
     validate(idValidation, req.params.idQuiz)
 
+    
     if (req.user.username !== req.params.username) {
         throw new ResponseError(400, "Username not match")
     }
@@ -40,8 +41,6 @@ const createOrUpdate = async (req) => {
         }
     })
 
-    console.log(quiz.questions)
-
     let correctAnswer = 0
     for (let index = 0; index < quiz.questions.length; index++) {
         if (quiz.questions[index].answer === userAnswers[index]) {
@@ -50,6 +49,9 @@ const createOrUpdate = async (req) => {
     }
 
     let score = correctAnswer / quiz.questions.length * 100
+    let wrongAnswer = quiz.questions.length - correctAnswer
+    let notAnswered = userAnswers.filter(answer => answer === null).length
+
 
     const totalQuizHistory = await prismaClient.quizHistory.count({
         where: {
@@ -74,6 +76,9 @@ const createOrUpdate = async (req) => {
             data: {
                 username: req.user.username,
                 id_quiz: req.params.idQuiz,
+                correct: correctAnswer,
+                wrong: wrongAnswer,
+                not_answered: notAnswered,
                 score: score,
                 created_at: new Date().toISOString(),
                 updated_at: new Date().toISOString(),
@@ -111,6 +116,9 @@ const createOrUpdate = async (req) => {
             id_quiz: req.params.idQuiz,
         },
         data: {
+            correct: correctAnswer,
+            wrong: wrongAnswer,
+            not_answered: notAnswered,
             score: score,
             updated_at: new Date().toISOString(),
         }

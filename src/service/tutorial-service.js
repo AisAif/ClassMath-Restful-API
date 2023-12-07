@@ -226,10 +226,105 @@ const getAllByIdGrade = async (req) => {
     })
 }
 
+const search = async (search) => {
+    let result = {
+        tutorial: [],
+        quiz: []
+    }
+
+    if (!search) {
+        return result
+    }
+    const tutorial = await prismaClient.tutorial.findMany({
+        where: {
+            OR: [
+                {
+                    title: {
+                        contains: search,
+                        mode: "insensitive"
+                    },
+                },
+                {
+                    grade: {
+                        name: {
+                            contains: search,
+                            mode: "insensitive"
+                        }
+                    }
+                },
+                {
+                    quizzes: {
+                        every: {
+                            title: {
+                                contains: search,
+                                mode: "insensitive"
+                            }
+                        }
+                    }
+                }
+
+            ]
+        },
+        select: {
+            id: true,
+            title: true,
+            chapter: true,
+            tutorial_image: true,
+            tutorial_file: true,
+            grade: true,
+        }
+    })
+
+    const quiz = await prismaClient.quiz.findMany({
+        where: {
+            OR: [
+                {
+                    title: {
+                        contains: search,
+                        mode: "insensitive"
+                    },
+                },
+                {
+                    tutorial: {
+                        title: {
+                            contains: search,
+                            mode: "insensitive"
+                        }
+                    }
+                },
+                {
+                    tutorial: {
+                        grade: {
+                            name: {
+                                contains: search,
+                                mode: "insensitive"
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        select: {
+            id: true,
+            title: true,
+            created_at: true,
+            questions: true,
+        }
+    })
+
+    result = {
+        tutorial,
+        quiz
+    }
+
+    return result
+}
+
 export default {
     create,
     get,
     update,
     remove,
-    getAllByIdGrade
+    getAllByIdGrade,
+    search
 }

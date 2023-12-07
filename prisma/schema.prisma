@@ -70,14 +70,17 @@ model Question {
 }
 
 model QuizHistory {
-  id          String @id @default(auto()) @map("_id") @db.ObjectId
-  score       Int
-  created_at  DateTime
-  updated_at  DateTime
-  id_quiz     String @db.ObjectId @unique
-  quiz        Quiz @relation(fields: [id_quiz], references: [id])
-  username    String
-  user        User @relation(fields: [username], references: [username])
+  id            String @id @default(auto()) @map("_id") @db.ObjectId
+  correct       Int
+  wrong         Int
+  not_answered  Int
+  score         Int
+  created_at    DateTime
+  updated_at    DateTime
+  id_quiz       String @db.ObjectId @unique
+  quiz          Quiz @relation(fields: [id_quiz], references: [id])
+  username      String
+  user          User @relation(fields: [username], references: [username])
 
   @@map("quiz_histories")
 }

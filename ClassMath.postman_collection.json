@@ -1,0 +1,3051 @@
+{
+	"info": {
+		"_postman_id": "45ab34a1-75cb-4231-81d4-9fb0e35679a7",
+		"name": "ClassMath",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29467184"
+	},
+	"item": [
+		{
+			"name": "User API",
+			"item": [
+				{
+					"name": "Register as User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"user1\",\r\n    \"password\": \"user2\",\r\n    \"name\": \"User 1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/users",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register - Username is Blank",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"user2\",\r\n    \"name\": \"User 2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/users",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register - Password is Blank",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"user2\",\r\n    \"name\": \"User 2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/users",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register - Name is Blank",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"user2\",\r\n    \"password\": \"user2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/users",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register as Admin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"aisaif\",\r\n    \"password\": \"aisaif\",\r\n    \"name\": \"Abdullah Isbarul Fahmi\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/users?token=Lp0O2wPa",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "Lp0O2wPa"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login - Username is Blank",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Create environment variable with token value\", function () {\r",
+									"    pm.environment.set(\"token\", pm.response.json().data.token);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"aisaif\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/users/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login - Password is Blank",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Create environment variable with token value\", function () {\r",
+									"    pm.environment.set(\"token\", pm.response.json().data.token);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"aisaif\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/users/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login - Username or Password is Wrong",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Create environment variable with token value\", function () {\r",
+									"    pm.environment.set(\"token\", pm.response.json().data.token);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"asdjkasd\",\r\n    \"password\": \"asmdkasd\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/users/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Create environment variable with token value\", function () {\r",
+									"    pm.environment.set(\"token\", pm.response.json().data.token);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"aisaif\",\r\n    \"password\": \"aisaif\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/users/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/users/current",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"current"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Leaderboard Score",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/users/leaderboard",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"leaderboard"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Abdullah Isbarul Fahmi\",\r\n    \"username\": \"aisaif\",\r\n    \"password\": \"aisaif\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/users/current",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"current"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Grade API",
+			"item": [
+				{
+					"name": "Create - Name is Blank",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Kelas 6",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "grade_image",
+									"type": "file",
+									"src": "/C:/Users/user/Downloads/pngwing.com (2).png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/grades",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"grades"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create - Image is Blank",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Kelas 6",
+									"type": "text"
+								},
+								{
+									"key": "grade_image",
+									"type": "file",
+									"src": "/C:/Users/user/Downloads/pngwing.com (2).png",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/grades",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"grades"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Create environment variable with Id Grade value\", function () {\r",
+									"    pm.environment.set(\"idGrade\", pm.response.json().data.id);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Kelas 6",
+									"type": "text"
+								},
+								{
+									"key": "grade_image",
+									"type": "file",
+									"src": "/C:/Users/user/Downloads/Frame 138.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/grades",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"grades"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/grades/{{idGrade}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"grades",
+								"{{idGrade}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get - Id Grade is Not Found",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/grades/salah",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"grades",
+								"salah"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Kelas 1",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/user/Downloads/pngwing.com (2).png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/grades",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"grades"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Kelas 3",
+									"type": "text"
+								},
+								{
+									"key": "grade_image",
+									"type": "file",
+									"src": "/C:/Users/user/Downloads/pngwing.com (1).png",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/grades/{{idGrade}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"grades",
+								"{{idGrade}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update - Id Grade is Not Found",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Kelas 3",
+									"type": "text"
+								},
+								{
+									"key": "grade_image",
+									"type": "file",
+									"src": "/C:/Users/user/Downloads/pngwing.com (1).png",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/grades/salah",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"grades",
+								"salah"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update - There is Not Allowed Field",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Kelas 3",
+									"type": "text"
+								},
+								{
+									"key": "grade_image",
+									"type": "file",
+									"src": "/C:/Users/user/Downloads/pngwing.com (1).png"
+								},
+								{
+									"key": "salah",
+									"value": "salah",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/grades/{{idGrade}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"grades",
+								"{{idGrade}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/grades/{{idGrade}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"grades",
+								"{{idGrade}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete - Id Grade is Not Found",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/grades/salah",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"grades",
+								"salah"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tutorial API",
+			"item": [
+				{
+					"name": "Create - Id is Not Found",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "chapter",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "Menuju Tak Terbatas",
+									"type": "text"
+								},
+								{
+									"key": "tutorial_image",
+									"type": "file",
+									"src": "/C:/Users/user/Downloads/Frame 138.png"
+								},
+								{
+									"key": "tutorial_file",
+									"type": "file",
+									"src": "/C:/Users/user/Downloads/cupuz,+##default.groups.name.manager##,+convert.pdf"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/grades/salah/tutorials",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"grades",
+								"salah",
+								"tutorials"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create - There is Blank Field",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "chapter",
+									"value": "1",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "title",
+									"value": "Menuju Tak Terbatas",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "tutorial_image",
+									"type": "file",
+									"src": "/C:/Users/user/Downloads/Frame 138.png"
+								},
+								{
+									"key": "tutorial_file",
+									"type": "file",
+									"src": "/C:/Users/user/Downloads/cupuz,+##default.groups.name.manager##,+convert.pdf"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/grades/{{idGrade}}/tutorials",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"grades",
+								"{{idGrade}}",
+								"tutorials"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create - There is Not Allowed Field",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "chapter",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "Menuju Tak Terbatas",
+									"type": "text"
+								},
+								{
+									"key": "tutorial_image",
+									"type": "file",
+									"src": "/C:/Users/user/Downloads/Frame 138.png"
+								},
+								{
+									"key": "tutorial_file",
+									"type": "file",
+									"src": "/C:/Users/user/Downloads/cupuz,+##default.groups.name.manager##,+convert.pdf"
+								},
+								{
+									"key": "salah",
+									"value": "salah",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/grades/{{idGrade}}/tutorials",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"grades",
+								"{{idGrade}}",
+								"tutorials"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create - File is Blank",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "chapter",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "Menuju Tak Terbatas",
+									"type": "text"
+								},
+								{
+									"key": "tutorial_image",
+									"type": "file",
+									"src": "/C:/Users/user/Downloads/Frame 138.png"
+								},
+								{
+									"key": "tutorial_file",
+									"type": "file",
+									"src": "/C:/Users/user/Downloads/cupuz,+##default.groups.name.manager##,+convert.pdf",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/grades/{{idGrade}}/tutorials",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"grades",
+								"{{idGrade}}",
+								"tutorials"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Create environment variable with id tutorial value\", function () {\r",
+									"    pm.environment.set(\"idTutorial\", pm.response.json().data.id);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "chapter",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "Menuju Tak Terbatas",
+									"type": "text"
+								},
+								{
+									"key": "tutorial_image",
+									"type": "file",
+									"src": "/C:/Users/user/Downloads/Frame 138.png"
+								},
+								{
+									"key": "tutorial_file",
+									"type": "file",
+									"src": "/C:/Users/user/Downloads/cupuz,+##default.groups.name.manager##,+convert.pdf"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/grades/{{idGrade}}/tutorials",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"grades",
+								"{{idGrade}}",
+								"tutorials"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get - Id is Not Found",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/grades/{{idGrade}}/tutorials/salah",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"grades",
+								"{{idGrade}}",
+								"tutorials",
+								"salah"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/grades/{{idGrade}}/tutorials/{{idTutorial}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"grades",
+								"{{idGrade}}",
+								"tutorials",
+								"{{idTutorial}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Kelas 1",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/user/Downloads/pngwing.com (2).png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/grades/{{idGrade}}/tutorials/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"grades",
+								"{{idGrade}}",
+								"tutorials",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Search",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Kelas 1",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/user/Downloads/pngwing.com (2).png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/grades/{{idGrade}}/tutorials/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"grades",
+								"{{idGrade}}",
+								"tutorials",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update - Id is Not Found",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "chapter",
+									"value": "1",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "title",
+									"value": "Menuju Tak Terbatas dan Melampauinya",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "tutorial_image",
+									"type": "file",
+									"src": "/C:/Users/user/Downloads/IMG_20231008_114500.png"
+								},
+								{
+									"key": "tutorial_file",
+									"type": "file",
+									"src": "/C:/Users/user/Downloads/619-1583-1-PB.pdf"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/grades/{{idGrade}}/tutorials/{{idTutorial}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"grades",
+								"{{idGrade}}",
+								"tutorials",
+								"{{idTutorial}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update - There is Blank Field",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "chapter",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "Menuju Tak Terbatas dan Melampauinya",
+									"type": "text"
+								},
+								{
+									"key": "tutorial_image",
+									"type": "file",
+									"src": "/C:/Users/user/Downloads/IMG_20231008_114500.png"
+								},
+								{
+									"key": "tutorial_file",
+									"type": "file",
+									"src": "/C:/Users/user/Downloads/619-1583-1-PB.pdf"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/grades/{{idGrade}}/tutorials/{{idTutorial}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"grades",
+								"{{idGrade}}",
+								"tutorials",
+								"{{idTutorial}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "chapter",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "Menuju Tak Terbatas dan Melampauinya",
+									"type": "text"
+								},
+								{
+									"key": "tutorial_image",
+									"type": "file",
+									"src": "/C:/Users/user/Downloads/IMG_20231008_114500.png"
+								},
+								{
+									"key": "tutorial_file",
+									"type": "file",
+									"src": "/C:/Users/user/Downloads/619-1583-1-PB.pdf"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/grades/{{idGrade}}/tutorials/{{idTutorial}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"grades",
+								"{{idGrade}}",
+								"tutorials",
+								"{{idTutorial}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete - Id is Not Found",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/grades/{{idGrade}}/tutorials/salah",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"grades",
+								"{{idGrade}}",
+								"tutorials",
+								"salah"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/grades/{{idGrade}}/tutorials/{{idTutorial}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"grades",
+								"{{idGrade}}",
+								"tutorials",
+								"{{idTutorial}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Quiz API",
+			"item": [
+				{
+					"name": "Create - Id is Not Found",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Create environment variable with id quiz value\", function () {\r",
+									"    pm.environment.set(\"idQuiz\", pm.response.json().data.id);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Menambah angka\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/grades/{{idGrade}}/tutorials/salah/quizzes",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"grades",
+								"{{idGrade}}",
+								"tutorials",
+								"salah",
+								"quizzes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create - Field is Blank",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Create environment variable with id quiz value\", function () {\r",
+									"    pm.environment.set(\"idQuiz\", pm.response.json().data.id);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/grades/{{idGrade}}/tutorials/{{idTutorial}}/quizzes",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"grades",
+								"{{idGrade}}",
+								"tutorials",
+								"{{idTutorial}}",
+								"quizzes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Create environment variable with id quiz value\", function () {\r",
+									"    pm.environment.set(\"idQuiz\", pm.response.json().data.id);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Menambah angka\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/grades/{{idGrade}}/tutorials/{{idTutorial}}/quizzes",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"grades",
+								"{{idGrade}}",
+								"tutorials",
+								"{{idTutorial}}",
+								"quizzes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get - Id is Not Found",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/grades/{{idGrade}}/tutorials/{{idTutorial}}/quizzes/salah",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"grades",
+								"{{idGrade}}",
+								"tutorials",
+								"{{idTutorial}}",
+								"quizzes",
+								"salah"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/grades/{{idGrade}}/tutorials/{{idTutorial}}/quizzes/{{idQuiz}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"grades",
+								"{{idGrade}}",
+								"tutorials",
+								"{{idTutorial}}",
+								"quizzes",
+								"{{idQuiz}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Kelas 1",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/user/Downloads/pngwing.com (2).png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/grades/{{idGrade}}/tutorials/{{idTutorial}}/quizzes",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"grades",
+								"{{idGrade}}",
+								"tutorials",
+								"{{idTutorial}}",
+								"quizzes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update - Id is Not Found",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Mengurangi angka\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/grades/{{idGrade}}/tutorials/{{idTutorial}}/quizzes/salah",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"grades",
+								"{{idGrade}}",
+								"tutorials",
+								"{{idTutorial}}",
+								"quizzes",
+								"salah"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update - Field is Blank",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/grades/{{idGrade}}/tutorials/{{idTutorial}}/quizzes/{{idQuiz}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"grades",
+								"{{idGrade}}",
+								"tutorials",
+								"{{idTutorial}}",
+								"quizzes",
+								"{{idQuiz}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Mengurangi angka\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/grades/{{idGrade}}/tutorials/{{idTutorial}}/quizzes/{{idQuiz}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"grades",
+								"{{idGrade}}",
+								"tutorials",
+								"{{idTutorial}}",
+								"quizzes",
+								"{{idQuiz}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete - Id is Not Found",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/grades/{{idGrade}}/tutorials/{{idTutorial}}/quizzes/salah",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"grades",
+								"{{idGrade}}",
+								"tutorials",
+								"{{idTutorial}}",
+								"quizzes",
+								"salah"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/grades/{{idGrade}}/tutorials/{{idTutorial}}/quizzes/{{idQuiz}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"grades",
+								"{{idGrade}}",
+								"tutorials",
+								"{{idTutorial}}",
+								"quizzes",
+								"{{idQuiz}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Question API",
+			"item": [
+				{
+					"name": "Create - Id Not Found",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Create environment variable with id question value\", function () {\r",
+									"    pm.environment.set(\"idQuestion\", pm.response.json().data.id);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "question_file",
+									"type": "file",
+									"src": "/C:/Users/user/Downloads/Frame 49 (1).png"
+								},
+								{
+									"key": "content",
+									"value": "Berapa waktu yang dibutuhkan untuk buat aplikasi ini?",
+									"type": "text"
+								},
+								{
+									"key": "choices",
+									"value": "[\"Baru\", \"Lama\", \"Sedang\", \"Sangat Lama\"]",
+									"type": "text"
+								},
+								{
+									"key": "answer",
+									"value": "A",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/grades/{{idGrade}}/tutorials/{{idTutorial}}/quizzes/salah/questions",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"grades",
+								"{{idGrade}}",
+								"tutorials",
+								"{{idTutorial}}",
+								"quizzes",
+								"salah",
+								"questions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create - Field is Blank",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Create environment variable with id question value\", function () {\r",
+									"    pm.environment.set(\"idQuestion\", pm.response.json().data.id);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "question_file",
+									"type": "file",
+									"src": "/C:/Users/user/Downloads/Frame 49 (1).png",
+									"disabled": true
+								},
+								{
+									"key": "content",
+									"value": "Berapa waktu yang dibutuhkan untuk buat aplikasi ini?",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "choices",
+									"value": "[\"Baru\", \"Lama\", \"Sedang\", \"Sangat Lama\"]",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "answer",
+									"value": "A",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/grades/{{idGrade}}/tutorials/{{idTutorial}}/quizzes/{{idQuiz}}/questions",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"grades",
+								"{{idGrade}}",
+								"tutorials",
+								"{{idTutorial}}",
+								"quizzes",
+								"{{idQuiz}}",
+								"questions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create - Some Field is Blank",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Create environment variable with id question value\", function () {\r",
+									"    pm.environment.set(\"idQuestion\", pm.response.json().data.id);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "question_file",
+									"type": "file",
+									"src": "/C:/Users/user/Downloads/Frame 49 (1).png",
+									"disabled": true
+								},
+								{
+									"key": "content",
+									"value": "Berapa waktu yang dibutuhkan untuk buat aplikasi ini?",
+									"type": "text"
+								},
+								{
+									"key": "choices",
+									"value": "[\"Baru\", \"Lama\", \"Sedang\", \"Sangat Lama\"]",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "answer",
+									"value": "A",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/grades/{{idGrade}}/tutorials/{{idTutorial}}/quizzes/{{idQuiz}}/questions",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"grades",
+								"{{idGrade}}",
+								"tutorials",
+								"{{idTutorial}}",
+								"quizzes",
+								"{{idQuiz}}",
+								"questions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Create environment variable with id question value\", function () {\r",
+									"    pm.environment.set(\"idQuestion\", pm.response.json().data.id);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "question_file",
+									"type": "file",
+									"src": "/C:/Users/user/Downloads/Frame 49 (1).png",
+									"disabled": true
+								},
+								{
+									"key": "content",
+									"value": "Berapa waktu yang dibutuhkan untuk buat aplikasi ini?",
+									"type": "text"
+								},
+								{
+									"key": "choices",
+									"value": "[\"Baru\", \"Lama\", \"Sedang\", \"Sangat Lama\"]",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "answer",
+									"value": "A",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/grades/{{idGrade}}/tutorials/{{idTutorial}}/quizzes/{{idQuiz}}/questions",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"grades",
+								"{{idGrade}}",
+								"tutorials",
+								"{{idTutorial}}",
+								"quizzes",
+								"{{idQuiz}}",
+								"questions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update - Id Not Found",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "question_file",
+									"type": "file",
+									"src": "/C:/Users/user/Downloads/Screenshot 2023-10-16 081114.png"
+								},
+								{
+									"key": "content",
+									"value": "Berapa lama waktu yang dibutuhkan untuk buat aplikasi ini?",
+									"type": "text"
+								},
+								{
+									"key": "choices",
+									"value": "[\"Baru\", \"Lama\", \"Sedang\", \"Sangat Lama\"]",
+									"type": "text"
+								},
+								{
+									"key": "answer",
+									"value": "B",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/grades/{{idGrade}}/tutorials/{{idTutorial}}/quizzes/{{idQuiz}}/questions/salah",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"grades",
+								"{{idGrade}}",
+								"tutorials",
+								"{{idTutorial}}",
+								"quizzes",
+								"{{idQuiz}}",
+								"questions",
+								"salah"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update - Some Field is Blank Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "question_file",
+									"type": "file",
+									"src": "/C:/Users/user/Downloads/Screenshot 2023-10-16 081114.png",
+									"disabled": true
+								},
+								{
+									"key": "content",
+									"value": "Berapa lama waktu yang dibutuhkan untuk buat aplikasi ini?",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "choices",
+									"value": "[\"Baru\", \"Lama\", \"Sedang\", \"Sangat Lama\"]",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "answer",
+									"value": "B",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/grades/{{idGrade}}/tutorials/{{idTutorial}}/quizzes/{{idQuiz}}/questions/{{idQuestion}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"grades",
+								"{{idGrade}}",
+								"tutorials",
+								"{{idTutorial}}",
+								"quizzes",
+								"{{idQuiz}}",
+								"questions",
+								"{{idQuestion}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update - Some Field is Blank",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "question_file",
+									"type": "file",
+									"src": "/C:/Users/user/Downloads/Screenshot 2023-10-16 081114.png"
+								},
+								{
+									"key": "content",
+									"value": "Berapa lama waktu yang dibutuhkan untuk buat aplikasi ini?",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "choices",
+									"value": "[\"Baru\", \"Lama\", \"Sedang\", \"Sangat Lama\"]",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "answer",
+									"value": "B",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/grades/{{idGrade}}/tutorials/{{idTutorial}}/quizzes/{{idQuiz}}/questions/{{idQuestion}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"grades",
+								"{{idGrade}}",
+								"tutorials",
+								"{{idTutorial}}",
+								"quizzes",
+								"{{idQuiz}}",
+								"questions",
+								"{{idQuestion}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "question_file",
+									"type": "file",
+									"src": "/C:/Users/user/Downloads/Screenshot 2023-10-16 081114.png"
+								},
+								{
+									"key": "content",
+									"value": "Berapa lama waktu yang dibutuhkan untuk buat aplikasi ini?",
+									"type": "text"
+								},
+								{
+									"key": "choices",
+									"value": "[\"Baru\", \"Lama\", \"Sedang\", \"Sangat Lama\"]",
+									"type": "text"
+								},
+								{
+									"key": "answer",
+									"value": "B",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/grades/{{idGrade}}/tutorials/{{idTutorial}}/quizzes/{{idQuiz}}/questions/{{idQuestion}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"grades",
+								"{{idGrade}}",
+								"tutorials",
+								"{{idTutorial}}",
+								"quizzes",
+								"{{idQuiz}}",
+								"questions",
+								"{{idQuestion}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete - Id is Not Found",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/grades/{{idGrade}}/tutorials/{{idTutorial}}/quizzes/{{idQuiz}}/questions/salah",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"grades",
+								"{{idGrade}}",
+								"tutorials",
+								"{{idTutorial}}",
+								"quizzes",
+								"{{idQuiz}}",
+								"questions",
+								"salah"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/grades/{{idGrade}}/tutorials/{{idTutorial}}/quizzes/{{idQuiz}}/questions/{{idQuestion}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"grades",
+								"{{idGrade}}",
+								"tutorials",
+								"{{idTutorial}}",
+								"quizzes",
+								"{{idQuiz}}",
+								"questions",
+								"{{idQuestion}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Quiz History API",
+			"item": [
+				{
+					"name": "Create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Create environment variable with id quiz history value\", function () {\r",
+									"    pm.environment.set(\"idQuizHistory\", pm.response.json().data.id);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"answers\": [\"A\", \"B\", null]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/username/{{username}}/quizzes/{{idQuiz}}/quiz-histories",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"username",
+								"{{username}}",
+								"quizzes",
+								"{{idQuiz}}",
+								"quiz-histories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"answers\": [\"B\", \"C\", \"D\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/username/{{username}}/quizzes/{{idQuiz}}/quiz-histories",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"username",
+								"{{username}}",
+								"quizzes",
+								"{{idQuiz}}",
+								"quiz-histories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create or Update but Id Quiz is Not Found",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Create environment variable with id quiz history value\", function () {\r",
+									"    pm.environment.set(\"idQuizHistory\", pm.response.json().data.id);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/username/{{username}}/quizzes/salah/quiz-histories",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"username",
+								"{{username}}",
+								"quizzes",
+								"salah",
+								"quiz-histories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create or Update but Body  is Blank",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Create environment variable with id quiz history value\", function () {\r",
+									"    pm.environment.set(\"idQuizHistory\", pm.response.json().data.id);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/username/{{username}}/quizzes/{{idQuiz}}/quiz-histories",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"username",
+								"{{username}}",
+								"quizzes",
+								"{{idQuiz}}",
+								"quiz-histories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create or Update but Bad Req on Answer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"answers\": [\"F\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/username/{{username}}/quizzes/{{idQuiz}}/quiz-histories",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"username",
+								"{{username}}",
+								"quizzes",
+								"{{idQuiz}}",
+								"quiz-histories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create or Update but Bad Req on Answer Length is Not Valid",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"answers\": [\"B\", \"A\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/username/{{username}}/quizzes/{{idQuiz}}/quiz-histories",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"username",
+								"{{username}}",
+								"quizzes",
+								"{{idQuiz}}",
+								"quiz-histories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get By Username and Id Quiz is Not Found",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/username/{{username}}/quizzes/salah/quiz-histories",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"username",
+								"{{username}}",
+								"quizzes",
+								"salah",
+								"quiz-histories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get By Username and Username is Not Match",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/username/salah/quizzes/{{idQuiz}}/quiz-histories",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"username",
+								"salah",
+								"quizzes",
+								"{{idQuiz}}",
+								"quiz-histories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get By Username and Id Quiz",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/username/{{username}}/quizzes/{{idQuiz}}/quiz-histories",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"username",
+								"{{username}}",
+								"quizzes",
+								"{{idQuiz}}",
+								"quiz-histories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/quiz-histories",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"quiz-histories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete - Id is Not Found",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/quiz-histories/salah",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"quiz-histories",
+								"salah"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/quiz-histories/{{idQuizHistory}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"quiz-histories",
+								"{{idQuizHistory}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "http://localhost:4000/api/"
+		}
+	]
+}

@@ -23,6 +23,7 @@ userRouter.get("/api/grades/:idGrade", gradeController.get)
 // Tutorial API
 userRouter.get("/api/grades/:idGrade/tutorials/:idTutorial", tutorialController.get)
 userRouter.get("/api/grades/:idGrade/tutorials/", tutorialController.getAllByIdGrade)
+userRouter.get("/api/tutorials", tutorialController.search)
 
 // Quiz API
 userRouter.get("/api/grades/:idGrade/tutorials/:idTutorial/quizzes/:idQuiz", quizController.get)
