@@ -1260,29 +1260,21 @@
 						],
 						"body": {
 							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "name",
-									"value": "Kelas 1",
-									"type": "text"
-								},
-								{
-									"key": "image",
-									"type": "file",
-									"src": "/C:/Users/user/Downloads/pngwing.com (2).png"
-								}
-							]
+							"formdata": []
 						},
 						"url": {
-							"raw": "{{base_url}}/grades/{{idGrade}}/tutorials/",
+							"raw": "{{base_url}}/tutorials?search=pen",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
-								"grades",
-								"{{idGrade}}",
-								"tutorials",
-								""
+								"tutorials"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "pen"
+								}
 							]
 						}
 					},
