@@ -21,6 +21,6 @@ npm run dev
 npm run start
 ``
 ## API Documentation
-Link: https://aisaif.github.io/ClassMath-Restful-API/
+Link: [https://aisaif.github.io/ClassMath-Restful-API/](https://aisaif.github.io/classmath-restful-api/)
 ## Interface Application Example
 Link: https://github.com/luqmanadi/ClassMathApplication
